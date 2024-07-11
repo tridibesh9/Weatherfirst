@@ -15,10 +15,13 @@ export default function Days({ weather }) {
         return <div>Loading...</div>;
     } else {
         return (
+            <div className="hourorigin">
+                <h2>Days Predictions</h2>
             <div className="Hour">
                 {dayweather.map((value, i) => (
                     <Daytiles key={i} weather={value} />
                 ))}
+            </div>
             </div>
         );
     }

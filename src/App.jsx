@@ -1,37 +1,47 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Location from './components/Location';
 import Hourly from './components/Hours';
-import {getweatherData} from "./components/GetData"
+import { getNewData, data } from './components/Updatedata';
 import Days from './components/Dayss';
+import axios from "axios";
+
 function App() {
-  
-  const [weather_data,setWeather] = useState({})
-  const [hour_data,sethour] = useState({})
-  const [day_data,setday] = useState({})
-  async function getNewData(text){
-    try{
-      const newData = await getweatherData(text);
-      setWeather(newData.current);
-      sethour(newData.forecast.forecastday[0].hour)
-      const newday = []
-      for(var i = 0;i<(newData.forecast.forecastday).length;i++){
-        newday.push(newData.forecast.forecastday[i].day)
-        newday[i].date = newData.forecast.forecastday[i].date
+  const [weather_data, setWeather] = useState([]);
+  const [hour_data, setHour] = useState([]);
+  const [day_data, setDay] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://api.ipify.org?format=json");
+        const ip = response.data.ip;
+        
+        await getNewData(ip);
+        setWeather(data.current);
+        setHour(data.hour);
+        setDay(data.days);
+      } catch (error) {
+        console.log(error.message);
       }
-      setday(newday)
-      console.log(newData)
-    }
-    catch(error){
-      console.log(error.message)
-    }
-  }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleGetNewData = async (text) => {
+    await getNewData(text);
+    setWeather(data.current);
+    setHour(data.hour);
+    setDay(data.days);
+  };
+
   return (
     <div>
-    <Navbar getNewData = {getNewData}/>
-    <Location weather = {weather_data}/>
-    <Hourly weather={hour_data}/>
-    <Days weather={day_data}/>
+      <Navbar getNewData={handleGetNewData} />
+      <Location weather={weather_data} />
+      <Hourly weather={hour_data} />
+      <Days weather={day_data} />
     </div>
   );
 }

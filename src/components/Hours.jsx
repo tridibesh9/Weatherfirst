@@ -15,10 +15,13 @@ export default function Hourly({ weather }) {
         return <div>Loading...</div>;
     } else {
         return (
+            <div className="hourorigin">
+                <h2>Hours Prediction</h2>
             <div className="Hour">
                 {hourweather.map((value, i) => (
                     <Hourtiles key={i} weather={value} />
                 ))}
+            </div>
             </div>
         );
     }
