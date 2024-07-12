@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseurl = 'http://api.weatherapi.com/v1/forecast.json?';
+const baseurl = 'https://api.weatherapi.com/v1/forecast.json?';
 const apikey = 'd4a62729e498486fb7c125016240907';
 
 export const getweatherData = async (city) => {
