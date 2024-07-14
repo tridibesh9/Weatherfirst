@@ -6,7 +6,7 @@ export default function Navbar(props){
 
     return(
         <div className=" Navbar">
-            <p>Home</p>
+            <a href="#Home"><p>Home</p></a>
             <div className="Search">
                 <input type="text" placeholder="Enter Location" onChange={(event)=>{
                     const { name, value } = event.target;

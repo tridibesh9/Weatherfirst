@@ -12,6 +12,9 @@ body{
   color: white;
   font-size: large;
   padding: 0px;
+  background: rgb(203,220,228);
+background: linear-gradient(0deg, rgba(203,220,228,0.7310573887758228) 19%, rgba(99,99,102,0.8991246156665791) 97%);
+  height: 50px;
 }
 .Navbar p{
   padding: 5px;
@@ -94,4 +97,10 @@ color: white;
 }
 .hourorigin h2{
   text-align: center;
+}
+html{
+  scroll-behavior: smooth;
+}
+a{
+  text-decoration: none;
 }

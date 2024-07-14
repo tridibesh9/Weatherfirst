@@ -31,7 +31,7 @@ export default function Location({ weather }) {
     
 
     return (
-        <div className={className} >
+        <div className={className} id="Home">
             <div className="Locationinfo">
                 <img src= {currentWeather.condition.icon} alt="" />
                 <h1>{currentWeather.loc_name}</h1>
